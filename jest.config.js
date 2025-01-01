@@ -1,5 +1,5 @@
 /** @type {import('jest').Config} */
-const config = {
+let config = {
 	setupFilesAfterEnv: ["console-fail-test/setup.js"],
 };
 
