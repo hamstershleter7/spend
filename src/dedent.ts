@@ -2,7 +2,7 @@ import type { Dedent, DedentOptions } from "./types.js";
 
 export type * from "./types.js";
 
-var dedent: Dedent = createDedent({});
+const dedent: Dedent = createDedent({});
 
 export default dedent;
 
@@ -18,8 +18,8 @@ function createDedent(options: DedentOptions) {
 		strings: TemplateStringsArray | string,
 		...values: unknown[]
 	) {
-		var raw = typeof strings === "string" ? [strings] : strings.raw;
-		var { escapeSpecialCharacters = Array.isArray(strings) } = options;
+		const raw = typeof strings === "string" ? [strings] : strings.raw;
+		const { escapeSpecialCharacters = Array.isArray(strings) } = options;
 
 		// first, perform interpolation
 		let result = "";
@@ -44,12 +44,12 @@ function createDedent(options: DedentOptions) {
 		}
 
 		// now strip indentation
-		var lines = result.split("\n");
+		const lines = result.split("\n");
 		let mindent: null | number = null;
-		for (var l of lines) {
-			var m = l.match(/^(\s+)\S+/);
+		for (const l of lines) {
+			const m = l.match(/^(\s+)\S+/);
 			if (m) {
-				var indent = m[1].length;
+				const indent = m[1].length;
 				if (!mindent) {
 					// this is the first indented line
 					mindent = indent;
@@ -60,7 +60,7 @@ function createDedent(options: DedentOptions) {
 		}
 
 		if (mindent !== null) {
-			var m = mindent; // appease TypeScript
+			const m = mindent; // appease TypeScript
 			result = lines
 				// https://github.com/typescript-eslint/typescript-eslint/issues/7140
 				// eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
